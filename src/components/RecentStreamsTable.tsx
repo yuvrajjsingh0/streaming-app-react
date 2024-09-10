@@ -1,28 +1,16 @@
 import React, { useState } from 'react';
+import { Stream, useDashboardData } from '../context/DashboardContext';
 
-interface StreamData {
-  songName: string;
-  artist: string;
-  dateStreamed: string;
-  streamCount: number;
-  userId: string;
-}
-
-// Mock data for the table
-const mockStreamData: StreamData[] = [
-  { songName: 'Song 1', artist: 'Artist 1', dateStreamed: '2024-09-01', streamCount: 500, userId: 'User1' },
-  { songName: 'Song 2', artist: 'Artist 2', dateStreamed: '2024-09-02', streamCount: 350, userId: 'User2' },
-  { songName: 'Song 3', artist: 'Artist 3', dateStreamed: '2024-09-03', streamCount: 250, userId: 'User3' },
-  { songName: 'Song 4', artist: 'Artist 4', dateStreamed: '2024-09-04', streamCount: 400, userId: 'User4' },
-  { songName: 'Song 5', artist: 'Artist 5', dateStreamed: '2024-09-05', streamCount: 450, userId: 'User5' },
-];
 
 const RecentStreamsTable: React.FC = () => {
+
+  const { streams } = useDashboardData();
+
   const [filter, setFilter] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-  const handleSort = (field: keyof StreamData) => {
-    const sortedData = [...mockStreamData].sort((a, b) => {
+  const handleSort = (field: keyof Stream) => {
+    const sortedData = [...streams!].sort((a, b) => {
       if (sortOrder === 'asc') {
         return a[field] > b[field] ? 1 : -1;
       } else {
@@ -32,10 +20,15 @@ const RecentStreamsTable: React.FC = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     return sortedData;
   };
-
-  const filteredData = mockStreamData.filter((stream) =>
+  console.log("streams", streams)
+  const filteredData = streams?.filter((stream) =>
     stream.songName.toLowerCase().includes(filter.toLowerCase()) || stream.artist.toLowerCase().includes(filter.toLowerCase())
   );
+
+  if (!streams || streams.length === 0) {
+    return <div>No streams available</div>;
+  }
+
 
   return (
     <div className="bg-white p-6 shadow-md rounded-lg my-8">
@@ -62,7 +55,7 @@ const RecentStreamsTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((stream, index) => (
+          {filteredData!.map((stream, index) => (
             <tr key={index} className="border-t">
               <td>{stream.songName}</td>
               <td>{stream.artist}</td>

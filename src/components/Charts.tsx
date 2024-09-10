@@ -1,25 +1,28 @@
 import React from 'react';
 import { Line, Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, BarElement } from 'chart.js';
+import { useDashboardData } from '../context/DashboardContext';
 
 // Register required Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, BarElement);
 
 const Charts: React.FC = () => {
-  // Mock data for the User Growth Line Chart
+
+  const { userGrowth, revenue, topSongs } = useDashboardData();
+
   const userGrowthData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
         label: 'Total Users',
-        data: [1000, 1500, 1800, 2200, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000],
+        data: userGrowth?.totalUsers,
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         fill: true,
       },
       {
         label: 'Active Users',
-        data: [800, 1200, 1500, 1800, 2000, 2300, 2600, 2800, 3200, 3400, 4000, 4500],
+        data: userGrowth?.activeUsers,
         borderColor: 'rgba(153, 102, 255, 1)',
         backgroundColor: 'rgba(153, 102, 255, 0.2)',
         fill: true,
@@ -32,7 +35,7 @@ const Charts: React.FC = () => {
     labels: ['Subscriptions', 'Ads'],
     datasets: [
       {
-        data: [8000, 4000],
+        data: [revenue?.subscriptions, revenue?.ads],
         backgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 99, 132, 0.7)'],
       },
     ],
@@ -44,7 +47,7 @@ const Charts: React.FC = () => {
     datasets: [
       {
         label: 'Streams',
-        data: [5000, 4200, 3800, 3600, 3400],
+        data: topSongs?.map((song) => song.streams),
         backgroundColor: 'rgba(255, 206, 86, 0.6)',
       },
     ],

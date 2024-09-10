@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDashboardData } from '../context/DashboardContext';
 
 interface MetricCardProps {
   title: string;
@@ -15,12 +16,18 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value }) => {
 };
 
 const KeyMetrics: React.FC = () => {
+  const { metrics } = useDashboardData();
+
+  if (!metrics) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <MetricCard title="Total Users" value="2M" />
-      <MetricCard title="Active Users" value="1.5M" />
-      <MetricCard title="Total Streams" value="45M" />
-      <MetricCard title="Revenue" value="$12M" />
+      <MetricCard title="Total Users" value={metrics.totalUsers} />
+      <MetricCard title="Active Users" value={metrics.activeUsers} />
+      <MetricCard title="Total Streams" value={metrics.totalStreams} />
+      <MetricCard title="Revenue" value={metrics.revenue} />
     </div>
   );
 };
