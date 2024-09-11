@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line, Pie, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, BarElement, LineOptions, ChartOptions } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, BarElement } from 'chart.js';
 import { useDashboardData } from '../context/DashboardContext';
 
 // Register required Chart.js components
@@ -52,9 +52,9 @@ const Charts: React.FC = () => {
     },
     plugins: {
       tooltip: {
-        mode: 'index', // Display tooltips for all data points on the vertical line
+        mode: 'index' as const, // Display tooltips for all data points on the vertical line
         intersect: false, // Allows the tooltip to appear when hovering near the line
-        position: 'nearest', // Shows the tooltip near the pointer
+        position: 'nearest' as const, // Shows the tooltip near the pointer
         callbacks: {
           label: function (context: any) {
             return `${context.dataset.label}: ${context.raw}`;
@@ -63,7 +63,7 @@ const Charts: React.FC = () => {
       },
       legend: {
         display: true,
-        position: 'top',
+        position: 'top' as const,
       },
     },
     elements: {

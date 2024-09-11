@@ -1,7 +1,6 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import RecentStreamsTable from './RecentStreamsTable';
-import { DashboardContext, DashboardProvider } from '../context/DashboardContext';
+import { DashboardContext } from '../context/DashboardContext';
 
 const mockStreams = [
   {
