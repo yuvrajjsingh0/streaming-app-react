@@ -51,24 +51,15 @@ To run the application in development mode:
 `npm run dev`
 Open http://localhost:5173 to view it in your browser.
 
+### Run Unit Tests
+`npm test`
+
 ### Building for Production
 To create an optimized production build:
 
 `npm run build`
 The production-ready files will be in the dist folder.
 
-### Project Structure
-src/
-├── components/
-│   ├── Charts.tsx          # Displays all the charts
-│   ├── KeyMetrics.tsx      # Displays key metrics
-│   ├── RecentStreamsTable.tsx  # Displays the recent streams table
-├── context/
-│   ├── DashboardContext.tsx    # Context API for state management
-├── mirage.ts              # MirageJS server configuration
-├── App.tsx                # Main application component
-├── main.tsx               # Application entry point
-└── index.css              # Global styles including Tailwind CSS imports
 ### How It Works
 Context API: The DashboardContext provides a central place for managing and fetching data from MirageJS. All state is managed in the context and passed down to child components.
 
@@ -78,18 +69,5 @@ Tailwind CSS: Tailwind is used for styling the components with utility classes, 
 
 Charts and Tables: The charts are implemented using Chart.js with react-chartjs-2, while the table is built with basic HTML and enhanced with sorting and filtering functionalities.
 
-### Troubleshooting
-If you encounter TypeError: Cannot read properties of undefined (reading 'map'), ensure that the state values are initialized correctly and that API responses are structured as expected.
-Check the console for any fetch errors that might indicate issues with the MirageJS setup.
-Contributing
-Contributions are welcome! Please fork the repository and submit a pull request for any improvements, bug fixes, or new features.
-
-### License
-This project is licensed under the MIT License.
-
 ### Contact
-For any questions or feedback, please contact yourname@example.com.
-
-### Summary
-
-This README provides detailed setup instructions, an overview of the project structure, and troubleshooting tips to help users get started quickly. You can customize the sections with your GitHub repo link, contact details, and any other specifics relevant to your project. Let me know if you need further adjustments!
+For any questions or feedback, please contact yuvrajjsingh0@gmail.com.
