@@ -40,7 +40,7 @@ export interface DashboardContextType {
   streams: Stream[] | null;
 }
 
-const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
+export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
 
 // Custom hook to use the DashboardContext
 export const useDashboardData = () => {

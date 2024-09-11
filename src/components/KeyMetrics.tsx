@@ -8,8 +8,8 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ title, value }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 text-center">
-      <h3 className="font-bold text-lg">{title}</h3>
+    <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow flex flex-col items-center justify-center">
+      <h3 className="text-sm font-semibold">{title}</h3>
       <p className="text-2xl mt-2">{value}</p>
     </div>
   );
@@ -23,7 +23,7 @@ const KeyMetrics: React.FC = () => {
   }
   
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <MetricCard title="Total Users" value={metrics.totalUsers} />
       <MetricCard title="Active Users" value={metrics.activeUsers} />
       <MetricCard title="Total Streams" value={metrics.totalStreams} />
